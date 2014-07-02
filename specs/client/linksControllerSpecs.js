@@ -1,6 +1,6 @@
 "use strict";
 
-describe('LinkController', function () {
+describe('LinksController', function () {
   var $scope, $rootScope, createController, Links, $httpBackend;
 
   // using angular mocks, we can inject the injector
