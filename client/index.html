@@ -9,29 +9,38 @@
   <body>
     <div class="btn-group btn-group-justified">
       <div class="btn-group">
-        <a href="#/links" class="btn btn-default">Links</a>
+        <a ui-sref="links" class="btn btn-default">Links</a>
       </div>
       <div class="btn-group">
-        <a href="#/shorten" class="btn btn-default">Shorten</a>
+        <a ui-sref="shorten" class="btn btn-default">Shorten</a>
       </div>
     </div>
-    <h1>Shortly</h1>
+    <div class="col-md-12">
+      <h1>Shortly</h1>
+      <ui-view></ui-view>
+    </div>
 
 
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view></div>
 
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
     </script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/d3/d3.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-charts/dist/angular-charts.min.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/gsap/src/minified/TweenMax.min.js"></script>
     <script src="lib/ng-Fx/dist/ng-Fx.min.js"></script>
     <script src="app/auth/auth.js"></script>
+    <script src="app/links/links.directives.js"></script>
+    <script src="app/links/linkController.js"></script>
     <script src="app/links/links.js"></script>
     <script src="app/shorten/shorten.js"></script>
     <script src="app/services/services.js"></script>

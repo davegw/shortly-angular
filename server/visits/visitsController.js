@@ -1,15 +1,16 @@
-var Link    = require('./linkModel.js'),
+var Visit    = require('./visitModel.js'),
     Q       = require('q'),
     util    = require('../config/utils.js');
 
 
 module.exports = {
-  findUrl: function (req, res, next, code) {
-    var findLink = Q.nbind(Link.findOne, Link);
-    findLink({code: code})
-      .then(function (link) {
-        if (link) {
-          req.navLink = link;
+  findByLinkId: function (req, res, next, link_id) {
+    var findVisit = Q.nbind(Visit.find, Link);
+    findLink({link_id: link_id})
+      .then(function (visits) {
+        if (visits) {
+          // req.navLink = link;
+          res.send(visits)
           next();
         } else {
           next(new Error('Link not added yet'));
@@ -20,29 +21,19 @@ module.exports = {
       });
   },
 
-  allLinks: function (req, res, next) {
-  var findAll = Q.nbind(Link.find, Link);
 
-  findAll({})
-    .then(function (links) {
-      res.json(links);
-    })
-    .fail(function (error) {
-      next(error);
-    });
-  },
-
-  newLink: function (req, res, next) {
-    var url = req.body.url;
+  newLink: function (req, res, next, link_id) {
+    var created_at = req.body.created_at;
+    var link_id = req.body.link_id;
     console.log(req.body);
-    if (!util.isValidUrl(url)) {
-      return next(new Error('Not a valid url'));
-    }
+    // if (!util.isValidUrl(url)) {
+    //   return next(new Error('Not a valid url'));
+    // }
 
-    var createLink = Q.nbind(Link.create, Link);
-    var findLink = Q.nbind(Link.findOne, Link);
+    var createVisit = Q.nbind(Visit.create, Visit);
+    var findVisit = Q.nbind(Visit.find, Visit);
 
-    findLink({url: url})
+    findVisit({link_id: link_id})
       .then(function (match) {
         if (match) {
           res.send(match);
@@ -55,7 +46,6 @@ module.exports = {
           var newLink = {
             url: url,
             visits: [],
-            visitCount: 0,
             base_url: req.headers.origin,
             title: title
           };
@@ -76,9 +66,9 @@ module.exports = {
     var link = req.navLink;
     var date = new Date();
     var visits = JSON.parse(link.visits);
-    visits.push(date);
-    link.visitCount = visits.length;
+    visits.push(1, date);
     link.visits = JSON.stringify(visits);
+    // link.visits++;
     link.save(function (err, savedLink) {
       if (err) {
         next(err);
@@ -87,6 +77,21 @@ module.exports = {
       }
     });
   },
-
+  // addNewVisit: function (req, res, next) {
+  //   var link = req.navLink;
+  //   var date = new Date();
+  //   //  = JSON.parse(link.visits);
+  //   var visits = [];
+  //   visits.push(1, date);
+  //   link.visits = JSON.stringify(visits);
+  //   // link.visits++;
+  //   link.save(function (err, savedLink) {
+  //     if (err) {
+  //       next(err);
+  //     } else {
+  //       res.end(savedLink);
+  //     }
+  //   });
+  // }
 
 };

@@ -8,14 +8,11 @@ module.exports = function (app) {
   // so the real URL will be pre fetched from mongo and attached to
   // req.navLink before it reaches line 16.
   app.param('code', linksController.findUrl);
-  // app.param('visit', linksController.findUrl);
 
   app.route('/')
     .get(linksController.allLinks)
-    .post(linksController.newLink)
+    .post(linksController.newLink);
 
-  // app.post('/:code', linksController.addNewVisit);
   app.get('/:code', linksController.navToLink);
-  // app.get('/:visit', linksController.addNewVisit);
 
 };

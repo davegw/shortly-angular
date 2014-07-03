@@ -1,7 +1,9 @@
 angular.module('shortly', [
   'ngSanitize',
   'ngAnimate',
+  'ui.router',
   'fx.animations',
+  'angularCharts',
   'shortly.services',
   'shortly.links',
   'shortly.shorten',
@@ -9,26 +11,65 @@ angular.module('shortly', [
   'ngRoute'
 ])
 
-.config(function($routeProvider, $httpProvider) {
-  $routeProvider
-    .when('/signin', {
-      templateUrl: 'app/auth/signin.html',
-      controller: 'AuthController'
+.config(function($stateProvider, $httpProvider) {
+  $stateProvider
+    .state("index", {
+      url : "/",
+      templateUrl: "/app/auth/signin.html",
+      controller: "AuthController"
     })
-    .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
+    .state("signin", {
+      url : "/signin",
+      templateUrl: "/app/auth/signin.html",
+      controller: "AuthController"
     })
-    .when('/links', {
+    .state("signup", {
+      url : "/signup",
+      templateUrl: "/app/auth/signup.html",
+      controller: "AuthController"
+    })
+
+    .state("links", {
+      url: "/links",
       templateUrl: 'app/links/links.html',
       controller: 'LinksController'
     })
-    .when('/shorten', {
+    .state("links.detail", {
+      url: "/:code",
+      templateUrl: 'app/links/links.detail.html',
+      controller: 'LinkController'
+    })
+
+
+    .state("shorten", {
+      url: "/shorten",
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController'
-    })
-    // Your code here
-    .otherwise({redirectTo: '/signin'});
+    });
+  $stateProvider.state("otherwise", {
+      url: "*path",
+      templateUrl: "views/auth/signin.html",
+      controller: "AuthController"
+  });
+  // $routeProvider
+  //   .when('/signin', {
+  //     templateUrl: 'app/auth/signin.html',
+  //     controller: 'AuthController'
+  //   })
+  //   .when('/signup', {
+  //     templateUrl: 'app/auth/signup.html',
+  //     controller: 'AuthController'
+  //   })
+  //   .when('/links', {
+  //     templateUrl: 'app/links/links.html',
+  //     controller: 'LinksController'
+  //   })
+  //   .when('/shorten', {
+  //     templateUrl: 'app/shorten/shorten.html',
+  //     controller: 'ShortenController'
+  //   })
+  //   // Your code here
+  //   .otherwise({redirectTo: '/signin'});
     // Your code here
 
     // We add our $httpInterceptor into the array
