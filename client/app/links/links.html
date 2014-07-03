@@ -5,12 +5,8 @@
   </div>
 
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat='link in data.links | orderBy:"-visits" | filter:search:strict '>
-      <div>{{link.title}} </div>
-      <a ng-click="addVisit(link)" href="{{link.base_url}}/api/links/{{link.code}}">{{link.base_url}}/{{link.code}} </a>
-      <span class="label label-primary pull-right">
-        {{link.visits}}
-      </span>
-    </li>
+    <linker class="list-group-item" ng-repeat='link in data.links | orderBy:"-visits" | filter:search:strict ' ng-model="link">
+
+    </linker>
   </ul>
 </div>

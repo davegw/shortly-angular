@@ -1,8 +1,22 @@
 
 
-var app = angular.module('shortly.links', []);
+angular.module('shortly.links', [])
 
-app.controller('LinksController', function ($scope, Links) {
+.directive('linker', function(){
+  return {
+    restrict: 'E',
+    // require: '^ngModel',
+    template: ['<div>{{link.title}} </div>',
+      '<a ng-click="addVisit(link)" href="{{link.base_url}}/api/links/{{link.code}}">{{link.base_url}}/{{link.code}} </a>',
+      '<span class="label label-primary pull-right">',
+        '{{link.visits}}',
+      '</span>'].join('')
+
+  };
+})
+
+
+.controller('LinksController', function ($scope, Links) {
   // Your code here
   $scope.data = {};
   $scope.getLinks = function(){
