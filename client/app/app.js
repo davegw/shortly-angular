@@ -1,4 +1,5 @@
 angular.module('shortly', [
+  'ngSanitize',
   'shortly.services',
   'shortly.links',
   'shortly.shorten',

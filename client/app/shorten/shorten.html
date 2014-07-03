@@ -1,11 +1,13 @@
 <div id='container'>
 <!-- Your code here -->
-  <input type="text" ng-model="link.url" placeholder="New URl">
-  <button ng-click="addLink()">Shorten</button>
-
+  <form ng-submit="addLink()">
+    <input type="url" ng-model="link.url" placeholder="New URL" required>
+    <button type="submit">Shorten</button>
+  </form>
   <div ng-show="loading">
     <img src="assets/spiffygif_46x46.gif" />
   </div>
+  <span style="color:red;" ng-show="ShowError">{{ShowError}}</span>
   <ul class="list-group" ng-show="newLink">
     <li class="list-group-item">
       <div>{{newLink.title}} </div>

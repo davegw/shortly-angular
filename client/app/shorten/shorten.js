@@ -5,10 +5,15 @@ angular.module('shortly.shorten', [])
   $scope.link = {url: ""};
   $scope.addLink = function() {
     $scope.loading = true;
+    $scope.ShowError = false;
     Links.create($scope.link)
       .then(function(response){
         $scope.loading = false;
         $scope.newLink = response.data;
+      })
+      .catch(function(error){
+        $scope.ShowError = error.statusText;
+        $scope.loading = false;
       });
   };
 });

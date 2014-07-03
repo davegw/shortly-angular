@@ -1,7 +1,11 @@
 <div id='container'>
   <!-- Your html here -->
+  <div class="form-group">
+    <input ng-model="search.title" type="text" placeholder="Search Link Names" />
+  </div>
+
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat='link in data.links | orderBy:"-visits" '>
+    <li class="list-group-item" ng-repeat='link in data.links | orderBy:"-visits" | filter:search:strict '>
       <div>{{link.title}} </div>
       <a ng-click="addVisit(link)" href="{{link.base_url}}/api/links/{{link.code}}">{{link.base_url}}/{{link.code}} </a>
       <span class="label label-primary pull-right">
