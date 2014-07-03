@@ -10,6 +10,8 @@ angular.module('shortly.links', [])
         console.log($scope.data);
       });
   };
-
+  $scope.addVisit = function(link){
+    link.visits++;
+  };
   $scope.getLinks();
 });

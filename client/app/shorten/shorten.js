@@ -8,7 +8,7 @@ angular.module('shortly.shorten', [])
     Links.create($scope.link)
       .then(function(response){
         $scope.loading = false;
-        console.log(response);
+        $scope.newLink = response.data;
       });
   };
 });

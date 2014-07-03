@@ -6,4 +6,10 @@
   <div ng-show="loading">
     <img src="assets/spiffygif_46x46.gif" />
   </div>
+  <ul class="list-group" ng-show="newLink">
+    <li class="list-group-item">
+      <div>{{newLink.title}} </div>
+      <a ng-click="addVisit(link)" href="{{newLink.base_url}}/api/links/{{newLink.code}}">{{newLink.base_url}}/{{newLink.code}} </a>
+    </li>
+  </ul>
 </div>
