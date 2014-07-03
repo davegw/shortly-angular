@@ -6,7 +6,6 @@ angular.module('shortly', [
   'ngRoute'
 ])
 
-
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signin', {
@@ -27,15 +26,12 @@ angular.module('shortly', [
     })
     // Your code here
     .otherwise({redirectTo: '/signin'});
+    // Your code here
+
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttatchTokens');
 })
-
-
-
-
-
 
 .factory('AttatchTokens', function ($window) {
   // this is an $httpInterceptor
