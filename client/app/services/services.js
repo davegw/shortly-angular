@@ -24,13 +24,6 @@ angular.module('shortly.services', [])
       url: '/api/links/' + id
     });
   };
-  linkInstance.addVisit = function(id){
-    return $http({
-      method: 'GET',
-      url: '/api/links/' + id,
-      // data: {code: id}
-    });
-  };
 
   return linkInstance;
 })
