@@ -1,5 +1,7 @@
 angular.module('shortly', [
   'ngSanitize',
+  'ngAnimate',
+  'fx.animations',
   'shortly.services',
   'shortly.links',
   'shortly.shorten',
