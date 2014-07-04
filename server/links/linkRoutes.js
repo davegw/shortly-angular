@@ -12,7 +12,7 @@ module.exports = function (app) {
 
   app.route('/')
     .get(linksController.allLinks)
-    .post(linksController.newLink)
+    .post(linksController.newLink);
 
   // app.post('/:code', linksController.addNewVisit);
   app.get('/:code', linksController.navToLink);

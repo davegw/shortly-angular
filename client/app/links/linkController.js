@@ -46,7 +46,6 @@ angular.module('shortly.link.controller', [])
     Links.get()
       .then(function(response){
         var link = _.where(response.data, {code: $stateParams.code});
-
         $scope.link = link[0];
         var visits = JSON.parse($scope.link.visits);
         _.each(visits, function (item){
