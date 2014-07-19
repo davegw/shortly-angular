@@ -75,7 +75,7 @@ module.exports = {
   navToLink: function (req, res, next) {
     var link = req.navLink;
     var date = new Date();
-    var visits = JSON.parse(link.visits);
+    var visits = JSON.parse(link.visits || '[]');
     visits.push(date);
     link.visitCount = visits.length;
     link.visits = JSON.stringify(visits);
