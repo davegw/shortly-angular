@@ -9,7 +9,6 @@ module.exports = {
     findLink({link_id: link_id})
       .then(function (visits) {
         if (visits) {
-          // req.navLink = link;
           res.send(visits)
           next();
         } else {
@@ -26,9 +25,6 @@ module.exports = {
     var created_at = req.body.created_at;
     var link_id = req.body.link_id;
     console.log(req.body);
-    // if (!util.isValidUrl(url)) {
-    //   return next(new Error('Not a valid url'));
-    // }
 
     var createVisit = Q.nbind(Visit.create, Visit);
     var findVisit = Q.nbind(Visit.find, Visit);
@@ -76,22 +72,6 @@ module.exports = {
         res.redirect(savedLink.url);
       }
     });
-  },
-  // addNewVisit: function (req, res, next) {
-  //   var link = req.navLink;
-  //   var date = new Date();
-  //   //  = JSON.parse(link.visits);
-  //   var visits = [];
-  //   visits.push(1, date);
-  //   link.visits = JSON.stringify(visits);
-  //   // link.visits++;
-  //   link.save(function (err, savedLink) {
-  //     if (err) {
-  //       next(err);
-  //     } else {
-  //       res.end(savedLink);
-  //     }
-  //   });
-  // }
+  }
 
 };

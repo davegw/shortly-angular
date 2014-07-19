@@ -4,22 +4,15 @@
     <div class="form-group">
       <input ng-model="search.title" type="text" placeholder="Search Link Names" />
     </div>
-
     <ul class="list-group">
       <a linker href="#/links/{{link.code}}"
-          class="list-group-item"
-          ng-repeat='link in data.links | orderBy:"-visitCount" | filter:search:strict '
-          ng-model="link">
-
+        class="list-group-item"
+        ng-repeat='link in data.links | orderBy:"-visitCount" | filter:search:strict '
+        ng-model="link">
       </a>
     </ul>
-
   </div>
   <div class="col-md-9">
-
     <div ui-view></div>
-
   </div>
-
-
 </div>

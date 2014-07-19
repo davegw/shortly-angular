@@ -16,8 +16,6 @@ angular.module('shortly.links.directives', [])
       element.click(function(){
         $('.list-group-item').removeClass('active');
         element.addClass('active');
-        // $location.path('#/links/' + scope.link.code);
-        // scope.this.$parent.goToLink(scope.link.code);
       });
     }
   };

@@ -1,7 +1,4 @@
-
-
 angular.module('shortly.links', ['shortly.links.directives', 'shortly.link.controller'])
-
 
 .controller('LinksController', function ($scope, Links, $location) {
   // Your code here
